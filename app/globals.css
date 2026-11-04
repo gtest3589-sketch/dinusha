@@ -3920,3 +3920,44 @@ section.education-showcase {
     letter-spacing: -1px;
   }
 }
+
+/* MOBILE RESPONSIVE HERO BUTTONS */
+@media (max-width: 780px) {
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-buttons .button-primary,
+  .hero-buttons .button-secondary {
+    display: inline-flex;
+    width: min(100%, 320px);
+    min-height: 50px;
+    padding: 0 18px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 11px;
+    gap: 10px;
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-buttons {
+    align-items: stretch;
+    gap: 11px;
+  }
+
+  .hero-buttons .button-primary,
+  .hero-buttons .button-secondary {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px;
+  }
+}
