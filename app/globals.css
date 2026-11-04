@@ -4014,3 +4014,9 @@ letter-spacing: -1.5px;
     min-height: 50px;
   }
 }
+/* Move DEVELOPER text slightly above the portrait */
+@media (max-width: 780px) {
+  .hero-background-word {
+    top: 16%;
+  }
+}
