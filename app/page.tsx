@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/my-portfolio" : "";
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/dinusha" : "";
 
 const navigation = [
   { id: "home", label: "Home" },
@@ -92,14 +92,14 @@ const projects: Project[] = [
       "MVC Architecture",
     ],
     details:
-      "Admin & Staff portals â€¢ Farmer record management â€¢ Leaf collection tracking â€¢ Automated payment calculations â€¢ Real-time stock updates â€¢ Monthly reporting â€¢ Password hashing & CSRF protection",
+      "Admin & Staff portals Ã¢â‚¬Â¢ Farmer record management Ã¢â‚¬Â¢ Leaf collection tracking Ã¢â‚¬Â¢ Automated payment calculations Ã¢â‚¬Â¢ Real-time stock updates Ã¢â‚¬Â¢ Monthly reporting Ã¢â‚¬Â¢ Password hashing & CSRF protection",
     github: "https://github.com/dinusha-madushan/tea-leaf-management-system",
   },
   {
     number: "02",
     title: "Room Rental System",
     subtitle: "Room Rental Management & Booking Platform",
-    year: "2025 â€“ 2026",
+    year: "2025 Ã¢â‚¬â€œ 2026",
     category: "Academic Project",
     image: `${BASE_PATH}/projects/room-rental.png`,
     description:
@@ -114,7 +114,7 @@ const projects: Project[] = [
       "XAMPP",
     ],
     details:
-      "User authentication â€¢ Room browsing & filtering â€¢ Booking management â€¢ Availability tracking â€¢ Admin dashboard â€¢ Responsive design â€¢ Database-driven operations",
+      "User authentication Ã¢â‚¬Â¢ Room browsing & filtering Ã¢â‚¬Â¢ Booking management Ã¢â‚¬Â¢ Availability tracking Ã¢â‚¬Â¢ Admin dashboard Ã¢â‚¬Â¢ Responsive design Ã¢â‚¬Â¢ Database-driven operations",
     github: "https://github.com/dinusha-madushan/room-rental-system",
   },
   {
@@ -136,7 +136,7 @@ const projects: Project[] = [
       "Git",
     ],
     details:
-      "Photo upload & management â€¢ CRUD operations â€¢ REST API integration â€¢ QR code generation â€¢ Content sharing â€¢ MySQL storage â€¢ Version control with Git",
+      "Photo upload & management Ã¢â‚¬Â¢ CRUD operations Ã¢â‚¬Â¢ REST API integration Ã¢â‚¬Â¢ QR code generation Ã¢â‚¬Â¢ Content sharing Ã¢â‚¬Â¢ MySQL storage Ã¢â‚¬Â¢ Version control with Git",
     github: "https://github.com/dinusha-madushan/photo-share",
     live: "http://photoshareapp.infinityfreeapp.com/photoshare/license.php",
   },
@@ -147,17 +147,17 @@ const education = [
     qualification: "HNDIT",
     title: "Higher National Diploma in Information Technology",
     institute: "Sri Lanka Advanced Technological Institute (SLIATE), Kandy",
-    year: "2024 â€“ Present",
+    year: "2024 Ã¢â‚¬â€œ Present",
   },
   {
     qualification: "G.C.E. A/L",
-    title: "Advanced Level â€“ Technology Stream",
+    title: "Advanced Level Ã¢â‚¬â€œ Technology Stream",
     institute: "Peradeniya Central College",
     year: "2023",
   },
   {
     qualification: "G.C.E. O/L",
-    title: "General Certificate of Education â€“ Ordinary Level",
+    title: "General Certificate of Education Ã¢â‚¬â€œ Ordinary Level",
     institute: "Mahanama College, Kandy",
     year: "2020",
   },
@@ -275,7 +275,7 @@ export default function Home() {
             </nav>
 
             <a href="#contact" className="nav-contact">
-              LET&apos;S TALK <span>â†—</span>
+              LET&apos;S TALK <span>Ã¢â€ â€”</span>
             </a>
           </header>
 
@@ -300,7 +300,7 @@ export default function Home() {
 
             <div className="hero-buttons">
               <a href="#projects" className="button-primary">
-                EXPLORE MY WORK <span>â†—</span>
+                EXPLORE MY WORK <span>Ã¢â€ â€”</span>
               </a>
 
               <a href="#about" className="button-secondary">
@@ -327,7 +327,7 @@ export default function Home() {
           </div>
 
           <div className="hero-bottom">
-            <span>SCROLL TO EXPLORE â†“</span>
+            <span>SCROLL TO EXPLORE Ã¢â€ â€œ</span>
           </div>
         </section>
 
@@ -634,7 +634,7 @@ export default function Home() {
 
           <div className="toolkit-bottom reveal">
             <span>CONTINUOUSLY LEARNING</span>
-            <span>BUILDING Â· EXPLORING Â· IMPROVING</span>
+            <span>BUILDING Ã‚Â· EXPLORING Ã‚Â· IMPROVING</span>
           </div>
         </section>
 
@@ -712,7 +712,7 @@ export default function Home() {
                         ? "HIDE CASE STUDY"
                         : "VIEW CASE STUDY"}{" "}
                       <span aria-hidden="true">
-                        {expandedProject === project.number ? "âˆ’" : "â†—"}
+                        {expandedProject === project.number ? "Ã¢Ë†â€™" : "Ã¢â€ â€”"}
                       </span>
                     </button>
 
@@ -722,7 +722,7 @@ export default function Home() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        VIEW GITHUB <span>â†—</span>
+                        VIEW GITHUB <span>Ã¢â€ â€”</span>
                       </a>
                     )}
 
@@ -732,7 +732,7 @@ export default function Home() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        LIVE APPLICATION <span>â†—</span>
+                        LIVE APPLICATION <span>Ã¢â€ â€”</span>
                       </a>
                     )}
                   </div>
@@ -759,7 +759,7 @@ export default function Home() {
             <div className="process-banner-left">
               <div className="process-banner-left-top">
                 <span>04 / HOW I WORK</span>
-                <span className="process-left-spark">âœ³</span>
+                <span className="process-left-spark">Ã¢Å“Â³</span>
               </div>
 
               <div className="process-banner-left-main">
@@ -807,7 +807,7 @@ export default function Home() {
 
                 <div className="process-banner-bottom">
                   <span>CREATIVITY / DEVELOPMENT / QUALITY</span>
-                  <span>SCROLL TO EXPLORE â†“</span>
+                  <span>SCROLL TO EXPLORE Ã¢â€ â€œ</span>
                 </div>
               </div>
 
@@ -816,7 +816,7 @@ export default function Home() {
                 <br />
                 WITH
                 <br />
-                PURPOSE âœ³
+                PURPOSE Ã¢Å“Â³
               </span>
             </div>
           </div>
@@ -868,7 +868,7 @@ export default function Home() {
             <div className="education-heading-side" aria-label="Learn, grow, create">
               <span>LEARN</span>
               <span>GROW</span>
-              <span>CREATE â†—</span>
+              <span>CREATE Ã¢â€ â€”</span>
             </div>
           </div>
 
@@ -899,7 +899,7 @@ export default function Home() {
                       : "BASIC EDUCATION"}
                 </p>
 
-                <span className="education-timeline-arrow" aria-hidden="true">â†—</span>
+                <span className="education-timeline-arrow" aria-hidden="true">Ã¢â€ â€”</span>
               </article>
             ))}
           </div>
@@ -914,20 +914,20 @@ export default function Home() {
               <div className="education-language-item">
                 <span className="language-number">01</span>
                 <strong>Sinhala</strong>
-                <span className="language-symbol">â†—</span>
+                <span className="language-symbol">Ã¢â€ â€”</span>
               </div>
 
               <div className="education-language-item">
                 <span className="language-number">02</span>
                 <strong>English</strong>
-                <span className="language-symbol">â†—</span>
+                <span className="language-symbol">Ã¢â€ â€”</span>
               </div>
             </div>
           </div>
 
           <div className="education-footer reveal">
             <span>ALWAYS LEARNING. ALWAYS IMPROVING.</span>
-            <span>MY JOURNEY CONTINUES â†—</span>
+            <span>MY JOURNEY CONTINUES Ã¢â€ â€”</span>
           </div>
         </section>
 
@@ -990,7 +990,7 @@ export default function Home() {
             </div>
 
             <a href={`${BASE_PATH}/dinusha%20CV%20new%20.pdf`} className="button-primary" download="Dinusha-Madushan-CV.pdf">
-              DOWNLOAD MY CV <span>â†“</span>
+              DOWNLOAD MY CV <span>Ã¢â€ â€œ</span>
             </a>
           </div>
         </section>
@@ -1017,7 +1017,7 @@ export default function Home() {
               <p>HAVE AN INTERNSHIP OR PROJECT OPPORTUNITY?</p>
 
               <a href="mailto:madushandinusha855@gmail.com">
-                SAY HELLO <span>â†—</span>
+                SAY HELLO <span>Ã¢â€ â€”</span>
               </a>
 
               <p className="contact-location">
@@ -1054,7 +1054,7 @@ export default function Home() {
                   <strong>madushandinusha855@gmail.com</strong>
                 </span>
 
-                <span className="contact-link-arrow">â†—</span>
+                <span className="contact-link-arrow">Ã¢â€ â€”</span>
               </a>
 
               {/* PHONE */}
@@ -1080,7 +1080,7 @@ export default function Home() {
                   <strong>+94 76 836 5842</strong>
                 </span>
 
-                <span className="contact-link-arrow">â†—</span>
+                <span className="contact-link-arrow">Ã¢â€ â€”</span>
               </a>
 
               {/* LINKEDIN */}
@@ -1106,7 +1106,7 @@ export default function Home() {
                   <strong>LinkedIn</strong>
                 </span>
 
-                <span className="contact-link-arrow">â†—</span>
+                <span className="contact-link-arrow">Ã¢â€ â€”</span>
               </a>
 
               {/* GITHUB */}
@@ -1132,7 +1132,7 @@ export default function Home() {
                   <strong>GitHub</strong>
                 </span>
 
-                <span className="contact-link-arrow">â†—</span>
+                <span className="contact-link-arrow">Ã¢â€ â€”</span>
               </a>
             </div>
           </div>
@@ -1145,9 +1145,9 @@ export default function Home() {
             DM<span>.</span>
           </a>
 
-          <p>DINUSHA MADUSHAN Â· SRI LANKA</p>
+          <p>DINUSHA MADUSHAN Ã‚Â· SRI LANKA</p>
 
-          <a href="#home">BACK TO TOP â†‘</a>
+          <a href="#home">BACK TO TOP Ã¢â€ â€˜</a>
         </footer>
       </main>
     </>
