@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/my-portfolio" : "";
+
 const navigation = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
@@ -78,7 +80,7 @@ const projects: Project[] = [
     subtitle: "Tea Factory Management System",
     year: "2026",
     category: "Full-Stack Web Application",
-    image: "/projects/tea-leaf.png",
+    image: `${BASE_PATH}/projects/tea-leaf.png`,
     description:
       "Comprehensive tea factory management solution covering farmer records, leaf collection, production tracking, and inventory management.",
     stack: [
@@ -90,16 +92,16 @@ const projects: Project[] = [
       "MVC Architecture",
     ],
     details:
-      "Admin & Staff portals • Farmer record management • Leaf collection tracking • Automated payment calculations • Real-time stock updates • Monthly reporting • Password hashing & CSRF protection",
+      "Admin & Staff portals â€¢ Farmer record management â€¢ Leaf collection tracking â€¢ Automated payment calculations â€¢ Real-time stock updates â€¢ Monthly reporting â€¢ Password hashing & CSRF protection",
     github: "https://github.com/dinusha-madushan/tea-leaf-management-system",
   },
   {
     number: "02",
     title: "Room Rental System",
     subtitle: "Room Rental Management & Booking Platform",
-    year: "2025 – 2026",
+    year: "2025 â€“ 2026",
     category: "Academic Project",
-    image: "/projects/room-rental.png",
+    image: `${BASE_PATH}/projects/room-rental.png`,
     description:
       "Web-based room rental platform enabling customers to browse available rooms and administrators to manage listings efficiently.",
     stack: [
@@ -112,7 +114,7 @@ const projects: Project[] = [
       "XAMPP",
     ],
     details:
-      "User authentication • Room browsing & filtering • Booking management • Availability tracking • Admin dashboard • Responsive design • Database-driven operations",
+      "User authentication â€¢ Room browsing & filtering â€¢ Booking management â€¢ Availability tracking â€¢ Admin dashboard â€¢ Responsive design â€¢ Database-driven operations",
     github: "https://github.com/dinusha-madushan/room-rental-system",
   },
   {
@@ -121,7 +123,7 @@ const projects: Project[] = [
     subtitle: "Social Photo Sharing & Content Management Web Application",
     year: "2026",
     category: "Web Application",
-    image: "/projects/photoshare-new.png",
+    image: `${BASE_PATH}/projects/photoshare-new.png`,
     description:
       "Feature-rich photo sharing platform with content management capabilities, API integration, and QR code functionality.",
     stack: [
@@ -134,7 +136,7 @@ const projects: Project[] = [
       "Git",
     ],
     details:
-      "Photo upload & management • CRUD operations • REST API integration • QR code generation • Content sharing • MySQL storage • Version control with Git",
+      "Photo upload & management â€¢ CRUD operations â€¢ REST API integration â€¢ QR code generation â€¢ Content sharing â€¢ MySQL storage â€¢ Version control with Git",
     github: "https://github.com/dinusha-madushan/photo-share",
     live: "http://photoshareapp.infinityfreeapp.com/photoshare/license.php",
   },
@@ -145,17 +147,17 @@ const education = [
     qualification: "HNDIT",
     title: "Higher National Diploma in Information Technology",
     institute: "Sri Lanka Advanced Technological Institute (SLIATE), Kandy",
-    year: "2024 – Present",
+    year: "2024 â€“ Present",
   },
   {
     qualification: "G.C.E. A/L",
-    title: "Advanced Level – Technology Stream",
+    title: "Advanced Level â€“ Technology Stream",
     institute: "Peradeniya Central College",
     year: "2023",
   },
   {
     qualification: "G.C.E. O/L",
-    title: "General Certificate of Education – Ordinary Level",
+    title: "General Certificate of Education â€“ Ordinary Level",
     institute: "Mahanama College, Kandy",
     year: "2020",
   },
@@ -273,7 +275,7 @@ export default function Home() {
             </nav>
 
             <a href="#contact" className="nav-contact">
-              LET&apos;S TALK <span>↗</span>
+              LET&apos;S TALK <span>â†—</span>
             </a>
           </header>
 
@@ -298,7 +300,7 @@ export default function Home() {
 
             <div className="hero-buttons">
               <a href="#projects" className="button-primary">
-                EXPLORE MY WORK <span>↗</span>
+                EXPLORE MY WORK <span>â†—</span>
               </a>
 
               <a href="#about" className="button-secondary">
@@ -314,7 +316,7 @@ export default function Home() {
 
           <div className="hero-portrait">
             <Image
-              src="/profile-transparent.png"
+              src={`${BASE_PATH}/profile-transparent.png`}
               alt="Portrait of Dinusha Madushan"
               width={1066}
               height={1224}
@@ -325,7 +327,7 @@ export default function Home() {
           </div>
 
           <div className="hero-bottom">
-            <span>SCROLL TO EXPLORE ↓</span>
+            <span>SCROLL TO EXPLORE â†“</span>
           </div>
         </section>
 
@@ -393,7 +395,7 @@ export default function Home() {
                       preload="metadata"
                       aria-label="Dinusha working on a laptop"
                     >
-                      <source src="/about-work.mp4" type="video/mp4" />
+                      <source src={`${BASE_PATH}/about-work.mp4`} type="video/mp4" />
                       Your browser does not support video playback.
                     </video>
 
@@ -632,7 +634,7 @@ export default function Home() {
 
           <div className="toolkit-bottom reveal">
             <span>CONTINUOUSLY LEARNING</span>
-            <span>BUILDING · EXPLORING · IMPROVING</span>
+            <span>BUILDING Â· EXPLORING Â· IMPROVING</span>
           </div>
         </section>
 
@@ -710,7 +712,7 @@ export default function Home() {
                         ? "HIDE CASE STUDY"
                         : "VIEW CASE STUDY"}{" "}
                       <span aria-hidden="true">
-                        {expandedProject === project.number ? "−" : "↗"}
+                        {expandedProject === project.number ? "âˆ’" : "â†—"}
                       </span>
                     </button>
 
@@ -720,7 +722,7 @@ export default function Home() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        VIEW GITHUB <span>↗</span>
+                        VIEW GITHUB <span>â†—</span>
                       </a>
                     )}
 
@@ -730,7 +732,7 @@ export default function Home() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        LIVE APPLICATION <span>↗</span>
+                        LIVE APPLICATION <span>â†—</span>
                       </a>
                     )}
                   </div>
@@ -757,7 +759,7 @@ export default function Home() {
             <div className="process-banner-left">
               <div className="process-banner-left-top">
                 <span>04 / HOW I WORK</span>
-                <span className="process-left-spark">✳</span>
+                <span className="process-left-spark">âœ³</span>
               </div>
 
               <div className="process-banner-left-main">
@@ -782,7 +784,7 @@ export default function Home() {
                 preload="metadata"
                 aria-label="Silent 3D animation showing the software development process"
               >
-                <source src="/process-animation.mp4" type="video/mp4" />
+                <source src={`${BASE_PATH}/process-animation.mp4`} type="video/mp4" />
                 Your browser does not support video playback.
               </video>
 
@@ -805,7 +807,7 @@ export default function Home() {
 
                 <div className="process-banner-bottom">
                   <span>CREATIVITY / DEVELOPMENT / QUALITY</span>
-                  <span>SCROLL TO EXPLORE ↓</span>
+                  <span>SCROLL TO EXPLORE â†“</span>
                 </div>
               </div>
 
@@ -814,7 +816,7 @@ export default function Home() {
                 <br />
                 WITH
                 <br />
-                PURPOSE ✳
+                PURPOSE âœ³
               </span>
             </div>
           </div>
@@ -866,7 +868,7 @@ export default function Home() {
             <div className="education-heading-side" aria-label="Learn, grow, create">
               <span>LEARN</span>
               <span>GROW</span>
-              <span>CREATE ↗</span>
+              <span>CREATE â†—</span>
             </div>
           </div>
 
@@ -897,7 +899,7 @@ export default function Home() {
                       : "BASIC EDUCATION"}
                 </p>
 
-                <span className="education-timeline-arrow" aria-hidden="true">↗</span>
+                <span className="education-timeline-arrow" aria-hidden="true">â†—</span>
               </article>
             ))}
           </div>
@@ -912,20 +914,20 @@ export default function Home() {
               <div className="education-language-item">
                 <span className="language-number">01</span>
                 <strong>Sinhala</strong>
-                <span className="language-symbol">↗</span>
+                <span className="language-symbol">â†—</span>
               </div>
 
               <div className="education-language-item">
                 <span className="language-number">02</span>
                 <strong>English</strong>
-                <span className="language-symbol">↗</span>
+                <span className="language-symbol">â†—</span>
               </div>
             </div>
           </div>
 
           <div className="education-footer reveal">
             <span>ALWAYS LEARNING. ALWAYS IMPROVING.</span>
-            <span>MY JOURNEY CONTINUES ↗</span>
+            <span>MY JOURNEY CONTINUES â†—</span>
           </div>
         </section>
 
@@ -987,8 +989,8 @@ export default function Home() {
               </h2>
             </div>
 
-            <a href="/dinusha%20CV%20new%20.pdf" className="button-primary" download="Dinusha-Madushan-CV.pdf">
-              DOWNLOAD MY CV <span>↓</span>
+            <a href={`${BASE_PATH}/dinusha%20CV%20new%20.pdf`} className="button-primary" download="Dinusha-Madushan-CV.pdf">
+              DOWNLOAD MY CV <span>â†“</span>
             </a>
           </div>
         </section>
@@ -1015,7 +1017,7 @@ export default function Home() {
               <p>HAVE AN INTERNSHIP OR PROJECT OPPORTUNITY?</p>
 
               <a href="mailto:madushandinusha855@gmail.com">
-                SAY HELLO <span>↗</span>
+                SAY HELLO <span>â†—</span>
               </a>
 
               <p className="contact-location">
@@ -1052,7 +1054,7 @@ export default function Home() {
                   <strong>madushandinusha855@gmail.com</strong>
                 </span>
 
-                <span className="contact-link-arrow">↗</span>
+                <span className="contact-link-arrow">â†—</span>
               </a>
 
               {/* PHONE */}
@@ -1078,7 +1080,7 @@ export default function Home() {
                   <strong>+94 76 836 5842</strong>
                 </span>
 
-                <span className="contact-link-arrow">↗</span>
+                <span className="contact-link-arrow">â†—</span>
               </a>
 
               {/* LINKEDIN */}
@@ -1104,7 +1106,7 @@ export default function Home() {
                   <strong>LinkedIn</strong>
                 </span>
 
-                <span className="contact-link-arrow">↗</span>
+                <span className="contact-link-arrow">â†—</span>
               </a>
 
               {/* GITHUB */}
@@ -1130,7 +1132,7 @@ export default function Home() {
                   <strong>GitHub</strong>
                 </span>
 
-                <span className="contact-link-arrow">↗</span>
+                <span className="contact-link-arrow">â†—</span>
               </a>
             </div>
           </div>
@@ -1143,9 +1145,9 @@ export default function Home() {
             DM<span>.</span>
           </a>
 
-          <p>DINUSHA MADUSHAN · SRI LANKA</p>
+          <p>DINUSHA MADUSHAN Â· SRI LANKA</p>
 
-          <a href="#home">BACK TO TOP ↑</a>
+          <a href="#home">BACK TO TOP â†‘</a>
         </footer>
       </main>
     </>
