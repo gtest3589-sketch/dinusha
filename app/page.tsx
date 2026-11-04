@@ -258,21 +258,7 @@ export default function Home() {
               DM<span>.</span>
             </a>
 
-            <nav className="top-navigation">
-              {navigation.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={
-                    activeSection === item.id
-                      ? "top-link current"
-                      : "top-link"
-                  }
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+            
 
             <a href="#contact" className="nav-contact">
               LET&apos;S TALK <span>↗</span>
