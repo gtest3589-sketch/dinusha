@@ -3961,3 +3961,56 @@ section.education-showcase {
     min-height: 48px;
   }
 }
+
+/* FIX MOBILE HERO CONTENT CUT-OFF */
+@media (max-width: 780px) {
+  .hero {
+    height: auto;
+    min-height: 900px;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 78%;
+    max-width: none;
+    margin: clamp(410px, 58vw, 455px) 11% 120px;
+    padding-bottom: 0;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .hero-buttons .button-primary,
+  .hero-buttons .button-secondary {
+    width: min(100%, 320px);
+    min-height: 52px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    min-height: 950px;
+  }
+
+  .hero-content {
+    margin-top: clamp(410px, 88vw, 445px);
+  }
+
+  .hero-buttons {
+    gap: 12px;
+  }
+
+  .hero-buttons .button-primary,
+  .hero-buttons .button-secondary {
+    width: 100%;
+    max-width: 320px;
+    min-height: 50px;
+  }
+}
