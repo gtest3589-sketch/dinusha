@@ -3916,8 +3916,8 @@ section.education-showcase {
 /* Small Mobile */
 @media (max-width: 500px) {
   .hero-background-word {
-    font-size: clamp(27px, 8.4vw, 42px);
-    letter-spacing: -1px;
+   font-size: clamp(38px, 11vw, 56px);
+letter-spacing: -1.5px;
   }
 }
 
