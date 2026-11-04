@@ -3891,3 +3891,32 @@ section.education-showcase {
     padding: 22px;
   }
 }
+/* =====================================
+   DEVELOPER BACKGROUND - FINAL RESPONSIVE SIZE
+===================================== */
+
+.hero-background-word {
+  font-size: clamp(85px, 15vw, 225px);
+  letter-spacing: -8px;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Tablet and Mobile */
+@media (max-width: 780px) {
+  .hero-background-word {
+    top: 19%;
+    font-size: clamp(30px, 8.8vw, 62px);
+    letter-spacing: -1.5px;
+    max-width: 100%;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 500px) {
+  .hero-background-word {
+    font-size: clamp(27px, 8.4vw, 42px);
+    letter-spacing: -1px;
+  }
+}
