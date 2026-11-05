@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -93,7 +94,8 @@ const projects: Project[] = [
     ],
     details:
       "Admin & Staff portals • Farmer record management • Leaf collection tracking • Automated payment calculations • Real-time stock updates • Monthly reporting • Password hashing & CSRF protection",
-    github: "https://github.com/dinusha-madushan/tea-leaf-management-system",
+    github:
+      "https://github.com/dinusha-madushan/tea-leaf-management-system",
   },
   {
     number: "02",
@@ -115,7 +117,8 @@ const projects: Project[] = [
     ],
     details:
       "User authentication • Room browsing & filtering • Booking management • Availability tracking • Admin dashboard • Responsive design • Database-driven operations",
-    github: "https://github.com/dinusha-madushan/room-rental-system",
+    github:
+      "https://github.com/dinusha-madushan/room-rental-system",
   },
   {
     number: "03",
@@ -138,7 +141,8 @@ const projects: Project[] = [
     details:
       "Photo upload & management • CRUD operations • REST API integration • QR code generation • Content sharing • MySQL storage • Version control with Git",
     github: "https://github.com/dinusha-madushan/photo-share",
-    live: "http://photoshareapp.infinityfreeapp.com/photoshare/license.php",
+    live:
+      "http://photoshareapp.infinityfreeapp.com/photoshare/license.php",
   },
 ];
 
@@ -146,7 +150,8 @@ const education = [
   {
     qualification: "HNDIT",
     title: "Higher National Diploma in Information Technology",
-    institute: "Sri Lanka Advanced Technological Institute (SLIATE), Kandy",
+    institute:
+      "Sri Lanka Advanced Technological Institute (SLIATE), Kandy",
     year: "2024 – Present",
   },
   {
@@ -163,14 +168,14 @@ const education = [
   },
 ];
 
-type TabName = "story" | "focus" | "progress";
-
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
-  const [activeTab, setActiveTab] = useState<TabName>("story");
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [isProjectViewerOpen, setIsProjectViewerOpen] = useState(false);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
 
-  // Detect the section currently visible on screen.
+  const activeProject = projects[activeProjectIndex];
+
+  /* Detect the section currently visible on screen */
   useEffect(() => {
     const sections = navigation
       .map((item) => document.getElementById(item.id))
@@ -207,7 +212,7 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  // Reveal elements when they enter the viewport.
+  /* Reveal elements when they enter the viewport */
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
 
@@ -220,7 +225,9 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.12 }
+      {
+        threshold: 0.12,
+      }
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -228,10 +235,31 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  /* Close the project viewer with the Escape key */
+  useEffect(() => {
+    if (!isProjectViewerOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsProjectViewerOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isProjectViewerOpen]);
+
+  /* Open project viewer */
+  const openProjectViewer = () => {
+    setActiveProjectIndex(0);
+    setIsProjectViewerOpen(true);
+  };
+
   return (
     <>
       {/* SIDEBAR NAVIGATION */}
-      <nav className="sidebar-nav">
+
+      <nav className="sidebar-nav" aria-label="Main navigation">
         {navigation.map((item) => (
           <a
             key={item.id}
@@ -242,7 +270,9 @@ export default function Home() {
                 : "sidebar-link"
             }
           >
-            <span className="sidebar-link-text">{item.label}</span>
+            <span className="sidebar-link-text">
+              {item.label}
+            </span>
           </a>
         ))}
       </nav>
@@ -251,14 +281,14 @@ export default function Home() {
         {/* HOME SECTION */}
 
         <section className="hero" id="home">
-          <div className="hero-background-word">DEVELOPER</div>
+          <div className="hero-background-word">
+            DEVELOPER
+          </div>
 
           <header className="topbar">
             <a href="#home" className="logo">
               DM<span>.</span>
             </a>
-
-            
 
             <a href="#contact" className="nav-contact">
               LET&apos;S TALK <span>↗</span>
@@ -266,7 +296,9 @@ export default function Home() {
           </header>
 
           <div className="hero-content">
-            <p className="hero-eyebrow">HELLO, I&apos;M</p>
+            <p className="hero-eyebrow">
+              HELLO, I&apos;M
+            </p>
 
             <h1>
               Dinusha
@@ -279,9 +311,10 @@ export default function Home() {
             </h2>
 
             <p className="hero-description">
-              I&apos;m a Full-Stack Developer Intern and HNDIT undergraduate
-              passionate about building modern web applications, developing
-              backend systems and creating useful digital experiences.
+              I&apos;m a Full-Stack Developer Intern and HNDIT
+              undergraduate passionate about building modern web
+              applications, developing backend systems and creating
+              useful digital experiences.
             </p>
 
             <div className="hero-buttons">
@@ -306,7 +339,7 @@ export default function Home() {
               alt="Portrait of Dinusha Madushan"
               width={1066}
               height={1224}
-              preload
+              priority
               sizes="(max-width: 700px) 95vw, 55vw"
               className="profile-image"
             />
@@ -317,178 +350,90 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ABOUT SECTION */}
+        {/* ABOUT SECTION — MY STORY ONLY */}
 
         <section className="section story-section" id="about">
           <div className="section-heading reveal">
-            <p className="section-kicker">01 / GET TO KNOW ME</p>
+            <p className="section-kicker">
+              01 / GET TO KNOW ME
+            </p>
 
             <h2>
               About<span className="green-dot">.</span>
             </h2>
 
             <p className="section-intro">
-              My background, interests, projects and professional goals.
+              My background, learning interests and professional goals.
             </p>
           </div>
 
           <div className="about-tabs reveal">
-            <div className="tab-buttons">
-              <button
-                className={
-                  activeTab === "story"
-                    ? "tab-button selected"
-                    : "tab-button"
-                }
-                onClick={() => setActiveTab("story")}
-              >
-                <span>01</span> My Story
-              </button>
+            <div className="tab-content">
+              <div className="story-content story-video-layout">
+                <div className="about-video-frame">
+                  <video
+                    className="about-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label="Software development workspace"
+                  >
+                    <source
+                      src={`${BASE_PATH}/about-work.mp4`}
+                      type="video/mp4"
+                    />
 
-              <button
-                className={
-                  activeTab === "focus"
-                    ? "tab-button selected"
-                    : "tab-button"
-                }
-                onClick={() => setActiveTab("focus")}
-              >
-                <span>02</span> My Focus
-              </button>
+                    Your browser does not support video playback.
+                  </video>
 
-              <button
-                className={
-                  activeTab === "progress"
-                    ? "tab-button selected"
-                    : "tab-button"
-                }
-                onClick={() => setActiveTab("progress")}
-              >
-                <span>03</span> Progress
-              </button>
-            </div>
-
-            <div className="tab-content" key={activeTab}>
-              {activeTab === "story" && (
-                <div className="story-content story-video-layout">
-                  <div className="about-video-frame">
-                    <video
-                      className="about-video"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      aria-label="Dinusha working on a laptop"
-                    >
-                      <source src={`${BASE_PATH}/about-work.mp4`} type="video/mp4" />
-                      Your browser does not support video playback.
-                    </video>
-
-                    <div className="about-video-label">
-                      <span className="status-dot" />
-                      SOFTWARE DEVELOPER / MY JOURNEY
-                    </div>
-                  </div>
-
-                  <div className="story-text">
-                    <p className="content-label">MY JOURNEY</p>
-
-                    <h3>
-                      Curious mind.
-                      <br />
-                      <span>Creative builder.</span>
-                    </h3>
-
-                    <p>
-                      I&apos;m Dinusha Madushan, a motivated Higher National
-                      Diploma in Information Technology (HNDIT) undergraduate
-                      at the Sri Lanka Advanced Technological Institute
-                      (SLIATE), Kandy.
-                    </p>
-
-                    <p>
-                      I&apos;m passionate about building practical software
-                      solutions, learning new technologies and developing
-                      my skills in Software Engineering, Quality Assurance,
-                      Web Development and Back-End Development.
-                    </p>
-
-                    <p>
-                      I&apos;m currently seeking an internship where I can
-                      apply my academic knowledge, gain real-world experience
-                      and grow in a professional environment.
-                    </p>
+                  <div className="about-video-label">
+                    <span className="status-dot" />
+                    SOFTWARE DEVELOPER / MY JOURNEY
                   </div>
                 </div>
-              )}
 
-              {activeTab === "focus" && (
-                <div className="progress-content">
-                  <div className="progress-stat">
-                    <span>01</span>
-                    <h3>Software Development</h3>
-                    <p>
-                      Learning to plan and build useful applications with
-                      clear and user-friendly features.
-                    </p>
-                  </div>
+                <div className="story-text">
+                  <p className="content-label">
+                    MY JOURNEY
+                  </p>
 
-                  <div className="progress-stat">
-                    <span>02</span>
-                    <h3>Quality Assurance</h3>
-                    <p>
-                      Checking application features, finding issues and
-                      helping improve software quality.
-                    </p>
-                  </div>
+                  <h3>
+                    Curious mind.
+                    <br />
+                    <span>Creative builder.</span>
+                  </h3>
 
-                  <div className="progress-stat">
-                    <span>03</span>
-                    <h3>Problem Solving</h3>
-                    <p>
-                      Breaking tasks into steps, learning from problems and
-                      improving solutions.
-                    </p>
-                  </div>
+                  <p>
+                    I&apos;m Dinusha Madushan, a motivated Higher
+                    National Diploma in Information Technology
+                    (HNDIT) undergraduate at the Sri Lanka Advanced
+                    Technological Institute (SLIATE), Kandy.
+                  </p>
+
+                  <p>
+                    I&apos;m passionate about building practical
+                    software solutions, learning new technologies
+                    and developing my skills in Software Engineering,
+                    Quality Assurance, Web Development and Back-End
+                    Development.
+                  </p>
+
+                  <p>
+                    I&apos;m interested in opportunities where I can
+                    apply my academic knowledge, gain real-world
+                    experience and grow in a professional environment.
+                  </p>
                 </div>
-              )}
-
-              {activeTab === "progress" && (
-                <div className="progress-content">
-                  <div className="progress-stat">
-                    <span>01</span>
-                    <h3>Learning</h3>
-                    <p>
-                      Developing knowledge in programming, databases,
-                      software engineering and quality assurance.
-                    </p>
-                  </div>
-
-                  <div className="progress-stat">
-                    <span>02</span>
-                    <h3>Building</h3>
-                    <p>
-                      Applying technical knowledge through academic and
-                      personal software projects.
-                    </p>
-                  </div>
-
-                  <div className="progress-stat">
-                    <span>03</span>
-                    <h3>Growing</h3>
-                    <p>
-                      Seeking internship experience and opportunities to
-                      improve professional skills.
-                    </p>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
           </div>
 
           <div className="manifesto-section reveal">
-            <p className="section-kicker">MY DEVELOPMENT MINDSET</p>
+            <p className="section-kicker">
+              MY DEVELOPMENT MINDSET
+            </p>
 
             <h2>
               THINK <span>DIFFERENT.</span>
@@ -497,9 +442,9 @@ export default function Home() {
             </h2>
 
             <p>
-              Good development is not only about writing code. It is about
-              understanding problems, learning continuously and creating
-              practical solutions.
+              Good development is not only about writing code.
+              It is about understanding problems, learning
+              continuously and creating practical solutions.
             </p>
           </div>
         </section>
@@ -508,15 +453,18 @@ export default function Home() {
 
         <section className="section creation-section">
           <div className="section-heading reveal">
-            <p className="section-kicker">WHAT I ENJOY</p>
+            <p className="section-kicker">
+              WHAT I ENJOY
+            </p>
 
             <h2>
               What I Create<span className="green-dot">.</span>
             </h2>
 
             <p className="section-intro">
-              I enjoy turning ideas into useful applications, building
-              reliable backend systems and improving software quality.
+              I enjoy turning ideas into useful applications,
+              building reliable backend systems and improving
+              software quality.
             </p>
           </div>
 
@@ -541,27 +489,33 @@ export default function Home() {
                   "Testing application functionality, preparing test cases, identifying bugs and improving software quality.",
               },
             ].map((item) => (
-              <article className="creation-card reveal" key={item.number}>
-                <span className="creation-number">{item.number}</span>
+              <article
+                className="creation-card reveal"
+                key={item.number}
+              >
+                <span className="creation-number">
+                  {item.number}
+                </span>
 
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                 </div>
-
               </article>
             ))}
           </div>
         </section>
 
-        {/* TECHNICAL SKILLS */}
+        {/* TECHNICAL SKILLS — QA-06 */}
 
         <section
           className="section skills-section skills-toolkit-section"
           id="skills"
         >
           <div className="section-heading skills-toolkit-heading reveal">
-            <p className="section-kicker">02 / MY TECHNICAL TOOLKIT</p>
+            <p className="section-kicker">
+              02 / MY TECHNICAL TOOLKIT
+            </p>
 
             <h2>
               Technologies
@@ -570,9 +524,9 @@ export default function Home() {
             </h2>
 
             <p className="section-intro">
-              A collection of programming languages, frameworks, databases
-              and development tools I use while building and exploring
-              software applications.
+              A collection of programming languages, frameworks,
+              databases and development tools I use while building
+              and exploring software applications.
             </p>
 
             <div className="toolkit-total">
@@ -599,7 +553,6 @@ export default function Home() {
 
                     <h3>{group.title}</h3>
                   </div>
-
                 </div>
 
                 <div className="tech-items">
@@ -610,7 +563,6 @@ export default function Home() {
                       </span>
 
                       {item}
-
                     </span>
                   ))}
                 </div>
@@ -624,12 +576,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROJECTS */}
+        {/* PROJECTS — SINGLE BUTTON + PROJECT VIEWER */}
 
         <section className="section gallery-section" id="projects">
           <div className="section-heading reveal">
             <p className="section-kicker">
-              03 / ACADEMIC & PERSONAL WORK
+              03 / SELECTED WORK
             </p>
 
             <h2>
@@ -637,108 +589,156 @@ export default function Home() {
             </h2>
 
             <p className="section-intro">
-              Selected projects demonstrating my experience with application
-              development, databases, APIs and software functionality.
+              Explore my work, practical applications and
+              development experience through my selected projects.
             </p>
           </div>
 
-          <div className="projects-showcase">
-            {projects.map((project, index) => (
-              <article
-                className={`project-showcase reveal ${
-                  index % 2 !== 0 ? "reverse" : ""
-                }`}
-                key={project.number}
+          <div className="projects-entry reveal">
+            <p>
+              SELECTED PROJECTS / DEVELOPMENT WORK /
+              PRACTICAL APPLICATIONS
+            </p>
+
+            <button
+              type="button"
+              className="project-open-button"
+              onClick={openProjectViewer}
+              aria-expanded={isProjectViewerOpen}
+              aria-controls="project-viewer"
+            >
+              EXPLORE MY PROJECTS
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          {isProjectViewerOpen && (
+            <div
+              className="project-viewer"
+              id="project-viewer"
+              aria-live="polite"
+            >
+              <div className="project-viewer-header">
+                <span>PROJECT SHOWCASE</span>
+
+                <span className="project-viewer-count">
+                  {String(activeProjectIndex + 1).padStart(2, "0")}
+                  {" / "}
+                  {String(projects.length).padStart(2, "0")}
+                </span>
+
+                <button
+                  type="button"
+                  className="project-close-button"
+                  onClick={() => setIsProjectViewerOpen(false)}
+                  aria-label="Close project showcase"
+                >
+                  CLOSE <span aria-hidden="true">×</span>
+                </button>
+              </div>
+
+              <div
+                className="project-viewer-layout"
+                key={activeProject.number}
               >
-                <div className="project-showcase-visual">
+                <div className="project-viewer-visual">
                   <Image
-                    src={project.image}
-                    alt={`${project.title} project screenshot`}
+                    src={activeProject.image}
+                    alt={`${activeProject.title} project screenshot`}
                     fill
-                    sizes="(max-width: 780px) 90vw, 55vw"
-                    className="project-showcase-image"
+                    sizes="(max-width: 780px) 90vw, 50vw"
+                    className="project-viewer-image"
                   />
 
-                  <span className="project-showcase-number">
-                    {project.number} / 03
+                  <span className="project-viewer-number">
+                    {activeProject.number} / 03
                   </span>
                 </div>
 
-                <div className="project-showcase-content">
-                  <p className="project-showcase-meta">
-                    {project.category} / {project.year}
+                <div className="project-viewer-content">
+                  <p className="project-viewer-meta">
+                    {activeProject.category} / {activeProject.year}
                   </p>
 
-                  <h3>{project.title}</h3>
+                  <h3>{activeProject.title}</h3>
 
-                  <h4>{project.subtitle}</h4>
+                  <h4>{activeProject.subtitle}</h4>
 
-                  <p className="project-showcase-description">
-                    {project.description}
+                  <p className="project-viewer-description">
+                    {activeProject.description}
                   </p>
 
-                  <div className="project-showcase-stack">
-                    {project.stack.map((tech) => (
+                  <div className="project-viewer-stack">
+                    {activeProject.stack.map((tech) => (
                       <span key={tech}>{tech}</span>
                     ))}
                   </div>
 
-                  <div className="project-showcase-links">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpandedProject(
-                          expandedProject === project.number ? null : project.number
-                        )
-                      }
-                      aria-expanded={expandedProject === project.number}
-                      aria-controls={`case-study-${project.number}`}
-                    >
-                      {expandedProject === project.number
-                        ? "HIDE CASE STUDY"
-                        : "VIEW CASE STUDY"}{" "}
-                      <span aria-hidden="true">
-                        {expandedProject === project.number ? "−" : "↗"}
-                      </span>
-                    </button>
+                  <div className="project-viewer-details">
+                    <p>KEY FEATURES & FUNCTIONALITY</p>
+                    <span>{activeProject.details}</span>
+                  </div>
 
-                    {project.github && (
+                  <div className="project-viewer-links">
+                    {activeProject.github && (
                       <a
-                        href={project.github}
+                        href={activeProject.github}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
-                        VIEW GITHUB <span>↗</span>
+                        VIEW GITHUB ↗
                       </a>
                     )}
 
-                    {project.live && (
+                    {activeProject.live && (
                       <a
-                        href={project.live}
+                        href={activeProject.live}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
-                        LIVE APPLICATION <span>↗</span>
+                        LIVE APPLICATION ↗
                       </a>
                     )}
                   </div>
-
-                  {expandedProject === project.number && (
-                    <div
-                      className="case-study-panel"
-                      id={`case-study-${project.number}`}
-                    >
-                      <p className="case-study-label">KEY FEATURES & WORK</p>
-                      <p>{project.details}</p>
-                    </div>
-                  )}
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+
+              <div className="project-viewer-controls">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveProjectIndex((current) =>
+                      Math.max(0, current - 1)
+                    )
+                  }
+                  disabled={activeProjectIndex === 0}
+                >
+                  ← PREVIOUS
+                </button>
+
+                <span>
+                  {String(activeProjectIndex + 1).padStart(2, "0")}
+                  {" / "}
+                  {String(projects.length).padStart(2, "0")}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveProjectIndex((current) =>
+                      Math.min(projects.length - 1, current + 1)
+                    )
+                  }
+                  disabled={activeProjectIndex === projects.length - 1}
+                >
+                  NEXT PROJECT →
+                </button>
+              </div>
+            </div>
+          )}
         </section>
 
-        {/* DEVELOPMENT PROCESS - VIDEO BANNER ONLY */}
+        {/* DEVELOPMENT PROCESS — QA-08: 04 */}
 
         <section className="section process-section y2k-process-section">
           <div className="process-banner-shell reveal">
@@ -768,9 +768,13 @@ export default function Home() {
                 loop
                 playsInline
                 preload="metadata"
-                aria-label="Silent 3D animation showing the software development process"
+                aria-label="Software development process animation"
               >
-                <source src={`${BASE_PATH}/process-animation.mp4`} type="video/mp4" />
+                <source
+                  src={`${BASE_PATH}/process-animation.mp4`}
+                  type="video/mp4"
+                />
+
                 Your browser does not support video playback.
               </video>
 
@@ -784,6 +788,7 @@ export default function Home() {
 
                 <div className="process-banner-title">
                   <p>EVERY GREAT BUILD STARTS SOMEWHERE.</p>
+
                   <h3>
                     IDEAS INTO
                     <br />
@@ -811,27 +816,42 @@ export default function Home() {
             <article className="process-step">
               <span>01</span>
               <h3>Understand</h3>
-              <p>Analyze requirements, identify core problems, and clarify project goals with stakeholders.</p>
+              <p>
+                Analyze requirements, identify core problems and
+                clarify project goals.
+              </p>
             </article>
+
             <article className="process-step">
               <span>02</span>
               <h3>Plan</h3>
-              <p>Design system architecture, break tasks into milestones, and select appropriate technologies.</p>
+              <p>
+                Design the solution, break tasks into milestones
+                and select suitable technologies.
+              </p>
             </article>
+
             <article className="process-step">
               <span>03</span>
               <h3>Build</h3>
-              <p>Develop features iteratively, write clean code, implement database logic, and integrate APIs.</p>
+              <p>
+                Develop features, write clean code, implement
+                database logic and integrate APIs.
+              </p>
             </article>
+
             <article className="process-step">
               <span>04</span>
               <h3>Test & Improve</h3>
-              <p>Conduct thorough testing, fix bugs, optimize performance, and refine user experience.</p>
+              <p>
+                Test functionality, fix issues, review performance
+                and refine the user experience.
+              </p>
             </article>
           </div>
         </section>
 
-        {/* EDUCATION - CLEAN TIMELINE */}
+        {/* EDUCATION — QA-08: 05 */}
 
         <section
           className="section journey-section education-showcase"
@@ -839,19 +859,25 @@ export default function Home() {
         >
           <div className="education-heading reveal">
             <div className="education-heading-main">
-              <p className="education-kicker">05 / MY ACADEMIC JOURNEY</p>
+              <p className="education-kicker">
+                05 / MY ACADEMIC JOURNEY
+              </p>
 
               <h2>
                 Education<span>.</span>
               </h2>
 
               <p className="education-intro">
-                Every step of my education has helped me build knowledge,
-                develop new skills and grow towards my professional goals.
+                Every step of my education has helped me build
+                knowledge, develop new skills and grow towards
+                my professional goals.
               </p>
             </div>
 
-            <div className="education-heading-side" aria-label="Learn, grow, create">
+            <div
+              className="education-heading-side"
+              aria-label="Learn, grow, create"
+            >
               <span>LEARN</span>
               <span>GROW</span>
               <span>CREATE ↗</span>
@@ -869,12 +895,20 @@ export default function Home() {
                   <small>/ 03</small>
                 </div>
 
-                <p className="education-timeline-year">{item.year}</p>
+                <p className="education-timeline-year">
+                  {item.year}
+                </p>
 
                 <div className="education-timeline-content">
-                  <p className="education-qualification">{item.qualification}</p>
+                  <p className="education-qualification">
+                    {item.qualification}
+                  </p>
+
                   <h3>{item.title}</h3>
-                  <p className="education-institute">{item.institute}</p>
+
+                  <p className="education-institute">
+                    {item.institute}
+                  </p>
                 </div>
 
                 <p className="education-timeline-category">
@@ -885,7 +919,12 @@ export default function Home() {
                       : "BASIC EDUCATION"}
                 </p>
 
-                <span className="education-timeline-arrow" aria-hidden="true">↗</span>
+                <span
+                  className="education-timeline-arrow"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
               </article>
             ))}
           </div>
@@ -917,65 +956,144 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PRACTICAL EXPERIENCE */}
+        {/* EXPERIENCE — QA-13: TWO CARDS ONLY */}
 
-        <section className="section experience-section" id="experience">
+        <section
+          className="section experience-section"
+          id="experience"
+        >
           <div className="section-heading reveal">
-            <p className="section-kicker">06 / PRACTICAL EXPERIENCE</p>
+            <p className="section-kicker">
+              06 / PRACTICAL EXPERIENCE
+            </p>
+
             <h2>
               Experience<span className="green-dot">.</span>
             </h2>
+
             <p className="section-intro">
-              Practical skills developed through academic work and personal projects.
+              Practical experience developed through academic
+              and independent software projects, including
+              development, implementation and problem-solving.
             </p>
           </div>
 
           <div className="experience-grid">
-            <article className="experience-card reveal">
-              <p className="experience-type">ACADEMIC PROJECT WORK</p>
-              <h3>Software Development Projects</h3>
-              <p>
-                Built database-driven web applications as part of my HNDIT
-                learning, including room rental and management systems.
-              </p>
-            </article>
+            {/* EXPERIENCE 01 */}
 
             <article className="experience-card reveal">
-              <p className="experience-type">PERSONAL DEVELOPMENT</p>
-              <h3>Web Development</h3>
-              <p>
-                Developed personal projects such as PhotoShare and my portfolio,
-                focusing on useful features and responsive layouts.
+              <p className="experience-type">
+                ACADEMIC PROJECT EXPERIENCE
               </p>
+
+              <p className="experience-role-label">ROLE</p>
+
+              <h3>Software Developer</h3>
+
+              <div className="experience-meta">
+                <div>
+                  <span>COMPANY / CONTEXT</span>
+                  <p>
+                    Room Rental Management System · HNDIT Academic Project
+                  </p>
+                </div>
+
+                <div>
+                  <span>DURATION</span>
+                  <p>2025 – 2026</p>
+                </div>
+              </div>
+
+              <p className="experience-summary">
+                Developed a database-driven room rental platform
+                for room listings, customer bookings and
+                administrator management.
+              </p>
+
+              <ul className="experience-responsibilities">
+                <li>
+                  Built room listing and availability features.
+                </li>
+
+                <li>
+                  Implemented user authentication and booking workflows.
+                </li>
+
+                <li>
+                  Developed admin functions for room and booking management.
+                </li>
+              </ul>
             </article>
 
+            {/* EXPERIENCE 02 */}
+
             <article className="experience-card reveal">
-              <p className="experience-type">TESTING PRACTICE</p>
-              <h3>UI Review & Bug Fixing</h3>
-              <p>
-                Checked features and screen layouts, recorded UI issues and
-                improved the website across desktop and mobile screens.
+              <p className="experience-type">
+                INDEPENDENT PROJECT EXPERIENCE
               </p>
+
+              <p className="experience-role-label">ROLE</p>
+
+              <h3>Web Application Developer</h3>
+
+              <div className="experience-meta">
+                <div>
+                  <span>COMPANY / CONTEXT</span>
+                  <p>Tea Leaf Management System · PhotoShare</p>
+                </div>
+
+                <div>
+                  <span>DURATION</span>
+                  <p>2026</p>
+                </div>
+              </div>
+
+              <p className="experience-summary">
+                Developed independent applications focused
+                on management workflows, content management
+                and photo sharing functionality.
+              </p>
+
+              <ul className="experience-responsibilities">
+                <li>
+                  Developed farmer, leaf collection, production
+                  and inventory management features.
+                </li>
+
+                <li>
+                  Implemented photo uploads, CRUD operations
+                  and content management.
+                </li>
+
+                <li>
+                  Integrated REST APIs and QR code functionality.
+                </li>
+              </ul>
             </article>
           </div>
         </section>
 
-        {/* CV */}
+        {/* CV SECTION */}
 
         <section className="section resume-section">
           <div className="resume-content reveal">
             <div>
-              <p className="section-kicker">WANT TO KNOW MORE?</p>
+              <p className="section-kicker">
+                WANT TO KNOW MORE?
+              </p>
 
               <h2>
                 Let&apos;s make
                 <br />
-                something
-                <span> happen.</span>
+                something<span> happen.</span>
               </h2>
             </div>
 
-            <a href={`${BASE_PATH}/dinusha%20CV%20new%20.pdf`} className="button-primary" download="Dinusha-Madushan-CV.pdf">
+            <a
+              href={`${BASE_PATH}/dinusha%20CV%20new%20.pdf`}
+              className="button-primary"
+              download="Dinusha-Madushan-CV.pdf"
+            >
               DOWNLOAD MY CV <span>↓</span>
             </a>
           </div>
@@ -985,7 +1103,9 @@ export default function Home() {
 
         <section className="section connect-section" id="contact">
           <div className="section-heading reveal">
-            <p className="section-kicker">07 / GET IN TOUCH</p>
+            <p className="section-kicker">
+              07 / GET IN TOUCH
+            </p>
 
             <h2>
               Let&apos;s Connect<span className="green-dot">.</span>
@@ -1000,9 +1120,14 @@ export default function Home() {
 
           <div className="contact-layout reveal">
             <div className="contact-main">
-              <p>HAVE AN INTERNSHIP OR PROJECT OPPORTUNITY?</p>
+              <p className="contact-main-label">
+                HAVE AN INTERNSHIP OR PROJECT OPPORTUNITY?
+              </p>
 
-              <a href="mailto:madushandinusha855@gmail.com">
+              <a
+                href="mailto:madushandinusha855@gmail.com"
+                className="contact-email-btn"
+              >
                 SAY HELLO <span>↗</span>
               </a>
 
@@ -1013,25 +1138,24 @@ export default function Home() {
 
             <div className="contact-links">
               {/* EMAIL */}
-
               <a
                 href="mailto:madushandinusha855@gmail.com"
                 className="contact-link-item"
               >
-                <span className="contact-link-icon email-icon">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M3 6.5C3 5.4 3.9 4.5 5 4.5H19C20.1 4.5 21 5.4 21 6.5V17.5C21 18.6 20.1 19.5 19 19.5H5C3.9 19.5 3 18.6 3 17.5V6.5Z"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                    />
-                    <path
-                      d="M4 6L12 12.5L20 6"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                <span
+                  className="contact-link-icon email-icon"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
                   </svg>
                 </span>
 
@@ -1044,20 +1168,23 @@ export default function Home() {
               </a>
 
               {/* PHONE */}
-
               <a
                 href="tel:+94768365842"
                 className="contact-link-item"
               >
-                <span className="contact-link-icon phone-icon">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M5 3.5H8L10 8.5L7.5 10.5C8.6 12.9 10.5 14.8 13 16L15 13.5L20 15.5V18.5C20 19.6 19.1 20.5 18 20.5C9.4 20.5 3.5 14.6 3.5 6C3.5 4.6 4.1 3.5 5 3.5Z"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                <span
+                  className="contact-link-icon phone-icon"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M7 3h3l2 5-2.2 1.6a14 14 0 0 0 4.6 4.6L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.1.9-2 2-2Z" />
                   </svg>
                 </span>
 
@@ -1070,20 +1197,18 @@ export default function Home() {
               </a>
 
               {/* LINKEDIN */}
-
               <a
                 href="https://www.linkedin.com/in/dinusha-madushan-591446361"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="contact-link-item"
               >
-                <span className="contact-link-icon linkedin-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+                <span
+                  className="contact-link-icon linkedin-icon"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.5H4.96V9h2.97v9.5ZM6.45 7.7a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44ZM19.05 18.5h-2.97v-4.62c0-1.1-.02-2.51-1.53-2.51-1.54 0-1.78 1.2-1.78 2.43v4.7H9.8V9h2.85v1.3h.04c.4-.75 1.37-1.53 2.82-1.53 3.01 0 3.57 1.98 3.57 4.56v5.17Z" />
                   </svg>
                 </span>
 
@@ -1096,20 +1221,18 @@ export default function Home() {
               </a>
 
               {/* GITHUB */}
-
               <a
                 href="https://github.com/dinusha-madushan"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="contact-link-item"
               >
-                <span className="contact-link-icon github-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.04c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.75 2.15 3.25 1.64.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.04-1.14 3.04-1.14.61 1.54.23 2.68.12 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.23-5.11 5.51.4.35.75 1.02.75 2.06V22c0 .29.2.63.77.52A11.1 11.1 0 0 0 12 .9Z" />
+                <span
+                  className="contact-link-icon github-icon"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.74.08-.74 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.13 3.17.77.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z" />
                   </svg>
                 </span>
 
