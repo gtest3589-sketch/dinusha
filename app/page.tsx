@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/dinusha" : "";
+const BASE_PATH = process.env.CF_PAGES === "1" ? "" : process.env.NODE_ENV === "production" ? "/dinusha" : "";
 
 const navigation = [
   { id: "home", label: "Home" },
