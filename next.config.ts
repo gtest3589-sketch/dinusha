@@ -1,10 +1,16 @@
+
 import type { NextConfig } from "next";
 
 const isProduction = process.env.NODE_ENV === "production";
+const isCloudflarePages = process.env.CF_PAGES === "1";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isProduction ? "/dinusha" : "",
+  basePath: isCloudflarePages
+    ? ""
+    : isProduction
+      ? "/dinusha"
+      : "",
   trailingSlash: true,
   images: {
     unoptimized: true,
